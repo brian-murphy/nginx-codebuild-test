@@ -33,7 +33,7 @@ RUN set -x \
                 echo "key verification failed!"; \
                 exit 1; \
             fi \
-            && printf "%s%s%s\n" \
+            && printf "%s%s%s\n" \ 
                 "https://nginx.org/packages/mainline/alpine/v" \
                 `egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release` \
                 "/main" \
@@ -109,6 +109,8 @@ RUN set -x \
 # forward request and error logs to docker log collector
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
+    
+COPY nginx.conf /etc/nginx/
 
 EXPOSE 80
 
